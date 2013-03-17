@@ -11,9 +11,18 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jetty.version>6.1.4</jetty.version>
 		<spring.version>3.2.0.RELEASE</spring.version>
-		<slf4j.version>1.5.10</slf4j.version>
+		<slf4j.version>1.7.2</slf4j.version>
 		<java.version>1.6</java.version>
 		<junit.version>4.8.2</junit.version>
+		<commons-dbcp>1.4</commons-dbcp>
+		<commons-pool>1.6</commons-pool>
+		<hibernate.version>3.6.0.Final</hibernate.version>
+		<hibernate-validator>4.0.0.GA</hibernate-validator>
+		<guava>13.0.1</guava>
+
+		<!--  Testing -->
+		<festassert.version>1.4</festassert.version>
+        <mockito.version>1.9.5</mockito.version>
 	</properties>
 
 	<dependencies>
@@ -28,7 +37,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>4.0.0.GA</version>
+			<version>${hibernate-validator}</version>
 			<scope>compile</scope>
 		</dependency>
 
@@ -37,7 +46,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>3.6.0.Final</version>
+			<version>${hibernate.version}</version>
 			<scope>compile</scope>
 		</dependency>
 
@@ -108,14 +117,14 @@
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<version>20030825.184428</version>
+			<version>${commons-dbcp}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>commons-pool</groupId>
 			<artifactId>commons-pool</artifactId>
-			<version>20030825.183949</version>
+			<version>${commons-pool}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
@@ -137,6 +146,22 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.easytesting</groupId>
+            <artifactId>fest-assert</artifactId>
+            <version>${festassert.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+
 
 		<!-- logging -->
 		<dependency>
@@ -181,10 +206,16 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-	</dependencies>
 
+		<dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava</artifactId>
+		    <version>${guava}</version>
+		</dependency>
+	</dependencies>
+	<!-- JBoss Repository used for Java EE 6 pieces -->
+	<!--   Do I need this ??
 	<repositories>
-		<!-- JBoss Repository used for Java EE 6 pieces -->
 		<repository>
 			<id>repository.jboss.org</id>
 			<name>JBoss Repository</name>
@@ -200,6 +231,7 @@
 			</snapshots>
 		</repository>
 	</repositories>
+	 -->
 
 	<build>
 		<finalName>init</finalName>

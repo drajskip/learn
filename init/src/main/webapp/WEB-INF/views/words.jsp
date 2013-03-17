@@ -1,0 +1,17 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
+<html>
+<head>
+<title>Words</title>
+</head>
+<body>
+<!--
+	<c:forEach items="${people}" var="v_person">
+		<a href="edit?id=${v_person.id}">${v_person.id} -
+		${v_person.firstName} ${v_person.lastName}</a>
+		<br />
+	</c:forEach>
+-->
+
+</body>
+</html>
