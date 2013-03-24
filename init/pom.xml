@@ -251,8 +251,7 @@
 		    <version>${guava}</version>
 		</dependency>
 	</dependencies>
-	<!-- JBoss Repository used for Java EE 6 pieces -->
-	<!--   Do I need this ??
+
 	<repositories>
 		<repository>
 			<id>repository.jboss.org</id>
@@ -269,7 +268,6 @@
 			</snapshots>
 		</repository>
 	</repositories>
-	 -->
 
 	<build>
 		<finalName>init</finalName>
