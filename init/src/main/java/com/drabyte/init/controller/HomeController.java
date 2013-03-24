@@ -19,13 +19,13 @@ public class HomeController {
 	/**
 	 * Selects the home page and populates the model with a message
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "/home" }, method = RequestMethod.GET)
 	public String home(Model model) {
 		logger.info("Welcome home!");
 		model.addAttribute("controllerMessage",
 				"This is the message from the controller!");
 		return "home";
 	}
-	
+
 
 }
