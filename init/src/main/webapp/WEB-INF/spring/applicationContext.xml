@@ -5,7 +5,7 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-	<import resource="database.xml" />
-	<import resource="security.xml"/>
+	<import resource="applicationContext-database.xml" />
+	<import resource="applicationContext-security.xml"/>
 
 </beans>
