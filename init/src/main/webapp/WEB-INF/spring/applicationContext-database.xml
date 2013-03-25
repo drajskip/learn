@@ -12,7 +12,11 @@
 	<!-- Scans within the base package of the application for @Components to configure as beans -->
 	<bean id="placeholderConfig"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:db.properties" />
+		<property name="locations" >
+                <list>
+                    <value>classpath:/db.properties</value>
+                </list>
+		</property>
 	</bean>
 
 	<!-- Fabryka tworzona przez fabryke-->
