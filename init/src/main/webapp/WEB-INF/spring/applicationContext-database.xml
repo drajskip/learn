@@ -20,14 +20,22 @@
 	</bean>
 
 	<!-- Fabryka tworzona przez fabryke-->
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		  <property name="dataSource" ref="dataSource"/>
+		<property name="packagesToScan" value="com.drabyte.init.model"/>
 		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="showSql" value="true" />
-				<property name="generateDdl" value="true" />
-				<property name="databasePlatform" value="${db.dialect}" />
-			</bean>
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		 <property name="jpaProperties">
+                <props>
+					<prop key="showSql">true</prop>
+					<prop key="generateDdl">true</prop>
+					<prop key="hibernate.dialect">${db.dialect}</prop>
+					<prop key="hibernate.hbm2ddl.auto">update</prop>
+					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.transaction.flush_before_completion">true</prop>
+					<prop key="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</prop>
+				</props>
 		</property>
 	</bean>
 
@@ -39,7 +47,9 @@
 		<property name="password" value="${db.password}" />
 	</bean>
 
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-	</bean>
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" />
+
 
 </beans>

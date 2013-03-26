@@ -12,17 +12,29 @@
 	<!-- Scans within the base package of the application for @Components to configure as beans -->
 	<bean id="placeholderConfig"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:db.properties" />
+		<property name="locations" >
+                <list>
+                    <value>classpath:/db.properties</value>
+                </list>
+		</property>
 	</bean>
 
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	<!-- Fabryka tworzona przez fabryke-->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="packagesToScan" value="com.drabyte.init.model"/>
 		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="showSql" value="true" />
-				<property name="generateDdl" value="true" />
-				<property name="databasePlatform" value="${db.dialect}" />
-			</bean>
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		 <property name="jpaProperties">
+                <props>
+					<prop key="showSql">true</prop>
+					<prop key="generateDdl">true</prop>
+					<prop key="hibernate.dialect">${db.dialect}</prop>
+					<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.transaction.flush_before_completion">true</prop>
+					<prop key="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</prop>
+				</props>
 		</property>
 	</bean>
 
@@ -34,18 +46,9 @@
 		<property name="password" value="${db.password}" />
 	</bean>
 
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-
 	</bean>
-
-
-
-	<tx:annotation-driven />
-<!--
-not needed if context:component-scan is defined
-http://java.dzone.com/articles/persistence-layer-spring-31-0
-	<bean
-		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
- -->
 
 </beans>
