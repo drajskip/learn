@@ -12,7 +12,7 @@
     <security:http pattern="/img/**" security="none"/>
     <security:http pattern="/login**" security="none"/>
 
-    <security:http auto-config="true">
+    <security:http >
         <security:intercept-url pattern="/**" access="ROLE_USER"/>
 
         <security:form-login
@@ -24,8 +24,12 @@
         <security:logout invalidate-session="true"  logout-success-url="/login"/>
     </security:http>
 
+	<bean  id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider" >
+		<property name="userDetailsService"  ref="userService"/>
+	</bean>
 
 	<security:authentication-manager  alias="authenticationManager">
+		<security:authentication-provider ref="daoAuthenticationProvider"/>
 	    <security:authentication-provider>
 	        <security:user-service>
 	            <security:user name="admin" password="sommar" authorities="ROLE_USER" />
