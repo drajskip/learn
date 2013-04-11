@@ -24,6 +24,7 @@
 		<cglib>2.2.2</cglib>
 		<log4j>1.2.15</log4j>
 		<spring-jpa>2.0.8</spring-jpa>
+		<liquibase>2.0.5</liquibase>
 
 		<!-- debug   -->
 		<tomcatPlugin>1.1</tomcatPlugin>
@@ -242,6 +243,11 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase}</version>
+        </dependency>
 
 		<dependency>
 			<groupId>jstl</groupId>

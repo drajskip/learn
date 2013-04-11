@@ -35,9 +35,19 @@
 					<prop key="hibernate.show_sql">true</prop>
 					<prop key="hibernate.transaction.flush_before_completion">true</prop>
 					<prop key="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</prop>
+					<prop key="hibernate.hbm2ddl.import_files">initDB/init.sql</prop>
 				</props>
 		</property>
 	</bean>
+
+<!--
+	When initial schema is done  - export it to change set and start using liquibase
+	<bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+            <property name="dataSource" ref="dataSource"/>
+            <property name="changeLog" value="classpath:liquibase/changelog-main.xml"/>
+    </bean>
+ -->
+
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
