@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Login </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+<div id="login-form-wrap">
+    <h1 >Init login form </h1>
+    <form id="login-form" th:action="@{/j_spring_security_check}" method="POST">
+        <label for="loginusername">UserName</label>
+        <input type="text" id="loginusername" name="j_username" />
+        <br/>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="j_password" />
+
+        <div>
+            <button type="submit" class="btn btn-primary pull-left">Submit</button>
+        </div>
+
+    </form>
+</div>
+</html>
