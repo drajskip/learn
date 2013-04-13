@@ -25,7 +25,7 @@
 		<log4j>1.2.15</log4j>
 		<spring-jpa>2.0.8</spring-jpa>
 		<liquibase>2.0.5</liquibase>
-
+		<thymeleaf>2.0.16</thymeleaf>
 		<!-- debug   -->
 		<tomcatPlugin>1.1</tomcatPlugin>
 		<jettyPlugin>6.1.25</jettyPlugin>
@@ -262,7 +262,25 @@
 		    <artifactId>guava</artifactId>
 		    <version>${guava}</version>
 		</dependency>
+
+		<dependency>
+		  <groupId>org.thymeleaf</groupId>
+		  <artifactId>thymeleaf</artifactId>
+		  <version>${thymeleaf}</version>
+		  <scope>compile</scope>
+		</dependency>
+
+		<dependency>
+		  <groupId>org.thymeleaf</groupId>
+		  <artifactId>thymeleaf-spring3</artifactId>
+		  <version>${thymeleaf}</version>
+		  <scope>compile</scope>
+		</dependency>
+
+
+
 	</dependencies>
+
 
 	<repositories>
 		<repository>
