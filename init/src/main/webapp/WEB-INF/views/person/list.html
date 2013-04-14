@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Home</title>
+</head>
+<body>
+<h1>Listing People</h1>
+<div th:text="${'koza'}+' '+${'rrr'}"></div>
+<div th:each="v_person : ${people}">
+	<a th:href="'edit?id='+${v_person.id}" th:text="${v_person.id}+' -'+${v_person.firstName}+' '+${v_person.lastName}"></a>
+</div>
+<a href="edit"> Add Person</a>
+</body>
+</html>
