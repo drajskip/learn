@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Home</title>
+</head>
+<body>
+<h1 th:text="'Editing Person '+${person.id}+'-'+${person.firstName}+' '+${person.lastName}">
+
+</h1>
+<form th:object="${person}" style="padding:8px" th:action="@{/person/edit}" method="post">
+    <div th:text="'ID - '+${person.id}" ></div>
+    <p>
+        First Name<br/>
+        <input type="text" th:field="*{firstName}"/>
+    </p>
+    <p>
+        Last Name<br/>
+        <input type="text" th:field="*{lastName}"/>
+    </p>
+    <input type="submit" value="Save"/>
+</form>
+</body>
+</html>

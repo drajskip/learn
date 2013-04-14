@@ -2,8 +2,6 @@ package com.drabyte.init.controller;
 
 import java.util.List;
 
-import com.drabyte.init.dao.PersonDao;
-import com.drabyte.init.model.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,40 +12,43 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.drabyte.init.dao.PersonDao;
+import com.drabyte.init.model.Person;
+
 @Controller
 @RequestMapping("/person/")
 public class PersonController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 
 	@Autowired
 	private PersonDao personDao;
-	
+
 	@RequestMapping(method=RequestMethod.GET,value="edit")
-	public ModelAndView editPerson(@RequestParam(value="id",required=false) Long id) {		
-		logger.debug("Received request to edit person id : "+id);				
-		ModelAndView mav = new ModelAndView();		
- 		mav.setViewName("edit");
+	public ModelAndView editPerson(@RequestParam(value="id",required=false) Long id) {
+		logger.debug("Received request to edit person id : "+id);
+		ModelAndView mav = new ModelAndView();
+ 		mav.setViewName("person/edit");
  		Person person = null;
  		if (id == null) {
  			person = new Person();
  		} else {
  			person = personDao.find(id);
  		}
- 		
+
  		mav.addObject("person", person);
 		return mav;
-		
+
 	}
-	
-	@RequestMapping(method=RequestMethod.POST,value="edit") 
+
+	@RequestMapping(method=RequestMethod.POST,value="edit")
 	public String savePerson(@ModelAttribute Person person) {
-		logger.debug("Received postback on person "+person);		
+		logger.debug("Received postback on person "+person);
 		personDao.save(person);
-		return "redirect:list";
-		
+		return "redirect:/person/list";
+
 	}
-	
+
 	@RequestMapping(method=RequestMethod.GET,value="list")
 	public ModelAndView listPeople() {
 		logger.debug("Received request to list persons");
@@ -55,9 +56,9 @@ public class PersonController {
 		List<Person> people = personDao.getPeople();
 		logger.debug("Person Listing count = "+people.size());
 		mav.addObject("people",people);
-		mav.setViewName("list");
+		mav.setViewName("person/list");
 		return mav;
-		
+
 	}
 
 }
